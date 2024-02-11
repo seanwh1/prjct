@@ -1,1 +1,2032 @@
 
+!pip install yfinance==0.1.67
+!mamba install bs4==4.10.0 -y
+!pip install nbformat
+Collecting yfinance==0.1.67
+  Downloading yfinance-0.1.67-py2.py3-none-any.whl (25 kB)
+Requirement already satisfied: pandas>=0.24 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from yfinance==0.1.67) (1.3.5)
+Requirement already satisfied: numpy>=1.15 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from yfinance==0.1.67) (1.21.6)
+Requirement already satisfied: requests>=2.20 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from yfinance==0.1.67) (2.29.0)
+Requirement already satisfied: multitasking>=0.0.7 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from yfinance==0.1.67) (0.0.11)
+Requirement already satisfied: lxml>=4.5.1 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from yfinance==0.1.67) (4.9.2)
+Requirement already satisfied: python-dateutil>=2.7.3 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from pandas>=0.24->yfinance==0.1.67) (2.8.2)
+Requirement already satisfied: pytz>=2017.3 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from pandas>=0.24->yfinance==0.1.67) (2023.3)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from requests>=2.20->yfinance==0.1.67) (3.1.0)
+Requirement already satisfied: idna<4,>=2.5 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from requests>=2.20->yfinance==0.1.67) (3.4)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from requests>=2.20->yfinance==0.1.67) (1.26.15)
+Requirement already satisfied: certifi>=2017.4.17 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from requests>=2.20->yfinance==0.1.67) (2023.5.7)
+Requirement already satisfied: six>=1.5 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from python-dateutil>=2.7.3->pandas>=0.24->yfinance==0.1.67) (1.16.0)
+Installing collected packages: yfinance
+  Attempting uninstall: yfinance
+    Found existing installation: yfinance 0.2.4
+    Uninstalling yfinance-0.2.4:
+      Successfully uninstalled yfinance-0.2.4
+Successfully installed yfinance-0.1.67
+
+                  __    __    __    __
+                 /  \  /  \  /  \  /  \
+                /    \/    \/    \/    \
+███████████████/  /██/  /██/  /██/  /████████████████████████
+              /  / \   / \   / \   / \  \____
+             /  /   \_/   \_/   \_/   \    o \__,
+            / _/                       \_____/  `
+            |/
+        ███╗   ███╗ █████╗ ███╗   ███╗██████╗  █████╗
+        ████╗ ████║██╔══██╗████╗ ████║██╔══██╗██╔══██╗
+        ██╔████╔██║███████║██╔████╔██║██████╔╝███████║
+        ██║╚██╔╝██║██╔══██║██║╚██╔╝██║██╔══██╗██╔══██║
+        ██║ ╚═╝ ██║██║  ██║██║ ╚═╝ ██║██████╔╝██║  ██║
+        ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═════╝ ╚═╝  ╚═╝
+
+        mamba (1.4.2) supported by @QuantStack
+
+        GitHub:  https://github.com/mamba-org/mamba
+        Twitter: https://twitter.com/QuantStack
+
+█████████████████████████████████████████████████████████████
+
+
+Looking for: ['bs4==4.10.0']
+
+[+] 0.0s
+[+] 0.1s
+pkgs/main/linux-64 ━━━━━━━━━━━━━━━╸━━━━━━━━━   0.0 B /  ??.?MB @  ??.?MB/s  0.1s
+pkgs/main/noarch   ━━━━━━━━━╸━━━━━━━━━━━━━━━   0.0 B /  ??.?MB @  ??.?MB/s  0.1s
+pkgs/r/linux-64    ━━━━━━━━━━━━━━━╸━━━━━━━━━   0.0 B /  ??.?MB @  ??.?MB/s  0.1s
+pkgs/r/noarch      ━━━━━━━━━━━━━━╸━━━━━━━━━━   0.0 B /  ??.?MB @  ??.?MB/s  0.1s[+] 0.2s
+pkgs/main/linux-64 ━━━━━━━━━╸━━━━━━━━━━━━━━━  57.4kB /  ??.?MB @ 374.5kB/s  0.2s
+pkgs/main/noarch   ━━━━━━━━━━━╸━━━━━━━━━━━━━  41.0kB /  ??.?MB @ 266.6kB/s  0.2s
+pkgs/r/linux-64    ━╸━━━━━━━━━━━━━━━╸━━━━━━━  45.1kB /  ??.?MB @ 293.4kB/s  0.2s
+pkgs/r/noarch      ━━━━━━━━╸━━━━━━━━━━━━━━━━  12.3kB /  ??.?MB @  79.6kB/s  0.2s[+] 0.3s
+pkgs/main/linux-64 ━━━━━━━━━━━━╸━━━━━━━━━━━━ 536.6kB /  ??.?MB @   2.1MB/s  0.3s
+pkgs/main/noarch   ━━━━━━━━━━━━━━╸━━━━━━━━━━ 479.2kB /  ??.?MB @   1.9MB/s  0.3s
+pkgs/r/linux-64    ━━━━╸━━━━━━━━━━━━━━━╸━━━━ 565.3kB /  ??.?MB @   2.2MB/s  0.3s
+pkgs/r/noarch      ━━━━━━━━━━━╸━━━━━━━━━━━━━ 458.8kB /  ??.?MB @   1.8MB/s  0.3spkgs/main/noarch                                   859.8kB @   2.6MB/s  0.3s
+[+] 0.4s
+pkgs/main/linux-64 ━━━━━━━━━━━━━━╸━━━━━━━━━━   1.1MB /  ??.?MB @   3.1MB/s  0.4s
+pkgs/r/linux-64    ━━━━━━╸━━━━━━━━━━━━━━━╸━━   1.1MB /  ??.?MB @   3.0MB/s  0.4s
+pkgs/r/noarch      ━━━━━━━━━━━━━╸━━━━━━━━━━━ 876.6kB /  ??.?MB @   2.4MB/s  0.4s[+] 0.5s
+pkgs/main/linux-64 ╸━━━━━━━━━━━━━━━╸━━━━━━━━   1.7MB /  ??.?MB @   3.6MB/s  0.5s
+pkgs/r/linux-64    ━━━━━━━━━╸━━━━━━━━━━━━━━━   1.6MB /  ??.?MB @   3.4MB/s  0.5s
+pkgs/r/noarch      ╸━━━━━━━━━━━━━━━╸━━━━━━━━   1.4MB /  ??.?MB @   3.0MB/s  0.5spkgs/r/linux-64                                      1.9MB @   3.6MB/s  0.6s
+[+] 0.6s
+pkgs/main/linux-64 ━━━╸━━━━━━━━━━━━━━━╸━━━━━   2.2MB /  ??.?MB @   4.0MB/s  0.6s
+pkgs/r/noarch      ━━╸━━━━━━━━━━━━━━━╸━━━━━━   1.7MB /  ??.?MB @   3.1MB/s  0.6s[+] 0.7s
+pkgs/main/linux-64 ━━━━━╸━━━━━━━━━━━━━━━╸━━   2.7MB @   4.1MB/s             0.7s
+pkgs/r/noarch      ━━━━━━━━━━━━━━━━━━━━━━━━   2.3MB @   3.4MB/s Finalizing  0.7spkgs/r/noarch                                      @   3.4MB/s  0.7s
+[+] 0.8s
+pkgs/main/linux-64 ━━━━━━━━╸━━━━━━━━━━━━━━━━   3.4MB /  ??.?MB @   4.3MB/s  0.8s[+] 0.9s
+pkgs/main/linux-64 ━━━━━━━━━━╸━━━━━━━━━━━━━━   3.9MB /  ??.?MB @   4.4MB/s  0.9s[+] 1.0s
+pkgs/main/linux-64 ━━━━━━━━━━━━╸━━━━━━━━━━━━   4.4MB /  ??.?MB @   4.5MB/s  1.0s[+] 1.1s
+pkgs/main/linux-64 ━━━━━━━━━━━━━━━╸━━━━━━━━━   5.0MB /  ??.?MB @   4.6MB/s  1.1s[+] 1.2s
+pkgs/main/linux-64 ━━━━━━━━━╸━━━━━━━━━━━━━━━   5.5MB /  ??.?MB @   4.6MB/s  1.2s[+] 1.3s
+pkgs/main/linux-64 ━━━━━━━━━━━━╸━━━━━━━━━━━━   6.1MB /  ??.?MB @   4.7MB/s  1.3s[+] 1.4s
+pkgs/main/linux-64 ━━━━━━━━━━━━━╸━━━━━━━━━━━   6.4MB /  ??.?MB @   4.7MB/s  1.4s[+] 1.5s
+pkgs/main/linux-64 ━━━━━━━━━━━━━━━━━━━━━━━━   6.6MB @   4.8MB/s Finalizing  1.5s[+] 1.6s
+pkgs/main/linux-64                                 @   4.8MB/s  1.5s
+
+Pinned packages:
+  - python 3.7.*
+
+
+Transaction
+
+  Prefix: /home/jupyterlab/conda/envs/python
+
+  Updating specs:
+
+   - bs4==4.10.0
+   - ca-certificates
+   - certifi
+   - openssl
+
+
+  Package               Version  Build         Channel                 Size
+─────────────────────────────────────────────────────────────────────────────
+  Install:
+─────────────────────────────────────────────────────────────────────────────
+
+  + bs4                  4.10.0  hd3eb1b0_0    pkgs/main/noarch        10kB
+
+  Upgrade:
+─────────────────────────────────────────────────────────────────────────────
+
+  - ca-certificates    2023.5.7  hbcca054_0    conda-forge                 
+  + ca-certificates  2023.12.12  h06a4308_0    pkgs/main/linux-64     129kB
+  - openssl              1.1.1t  h0b41bf4_0    conda-forge                 
+  + openssl              1.1.1w  h7f8727e_0    pkgs/main/linux-64       4MB
+
+  Downgrade:
+─────────────────────────────────────────────────────────────────────────────
+
+  - beautifulsoup4       4.11.1  pyha770c72_0  conda-forge                 
+  + beautifulsoup4       4.10.0  pyh06a4308_0  pkgs/main/noarch        87kB
+
+  Summary:
+
+  Install: 1 packages
+  Upgrade: 2 packages
+  Downgrade: 1 packages
+
+  Total download: 4MB
+
+─────────────────────────────────────────────────────────────────────────────
+
+
+[+] 0.0s
+Downloading  (1) ━━━━━━━━━━━━━━━━━━━━━━━   0.0 B beautifulsoup4             0.0s
+Extracting       ━━━━━━━━━━━━━━━━━━━━━━━       0                            0.0s[+] 0.1s
+Downloading  (4) ━━━━━━━━━━━━━━━━━━━━━━━   0.0 B beautifulsoup4             0.1s
+Extracting       ━━━━━━━━━━━━━━━━━━━━━━━       0                            0.0sbeautifulsoup4                                      86.6kB @ 611.7kB/s  0.1s
+ca-certificates                                    128.7kB @ 843.1kB/s  0.2s
+bs4                                                 10.2kB @  58.8kB/s  0.2s
+[+] 0.2s
+Downloading  (1) ━╸━━━━━━━━━━━━━━━━━━━━━ 470.2kB openssl                    0.2s
+Extracting   (3) ━━━━━━━━━━━━━━━╸━━━━━━━       0 beautifulsoup4             0.0sopenssl                                              3.9MB @  16.3MB/s  0.2s
+[+] 0.3s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ╸━━━━━━━━━━━━━━━╸━━━━━━       0 beautifulsoup4             0.1s[+] 0.4s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━╸━━━━━━━━━━━━━━━╸━━━━━       0 beautifulsoup4             0.2s[+] 0.5s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━╸━━━━━━━━━━━━━━━╸━━━━       0 beautifulsoup4             0.3s[+] 0.6s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━╸━━━━━━━━━━━━━━━╸━━━       0 bs4                        0.4s[+] 0.7s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━━╸━━━━━━━━━━━━━━━╸━━       0 bs4                        0.5s[+] 0.8s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━━━━╸━━━━━━━━━━━━━━━━       0 bs4                        0.6s[+] 0.9s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━━━━━╸━━━━━━━━━━━━━━━       0 bs4                        0.7s[+] 1.0s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━━━━━━╸━━━━━━━━━━━━━━       0 ca-certificates            0.8s[+] 1.1s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━━━━━━━╸━━━━━━━━━━━━━       0 ca-certificates            0.9s[+] 1.2s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━━━━━━━━╸━━━━━━━━━━━━       0 ca-certificates            1.0s[+] 1.3s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━━━━━━━━━╸━━━━━━━━━━━       0 ca-certificates            1.1s[+] 1.4s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (4) ━━━━━━━━━━━━╸━━━━━━━━━━       0 openssl                    1.2s[+] 1.5s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (3) ━━━━╸━━━━━━━━━━━━━━━━━━       1 openssl                    1.3s[+] 1.6s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting   (2) ━━━━━━━━━━╸━━━━━━━━━━━━       2 openssl                    1.4s[+] 1.7s
+Downloading      ━━━━━━━━━━━━━━━━━━━━━━━   4.1MB                            0.3s
+Extracting       ━━━━━━━━━━━━━━━━━━━━━━━       4                            1.5s
+Downloading and Extracting Packages
+
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Requirement already satisfied: nbformat in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (5.8.0)
+Requirement already satisfied: fastjsonschema in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from nbformat) (2.16.3)
+Requirement already satisfied: importlib-metadata>=3.6 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from nbformat) (4.11.4)
+Requirement already satisfied: jsonschema>=2.6 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from nbformat) (4.17.3)
+Requirement already satisfied: jupyter-core in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from nbformat) (4.12.0)
+Requirement already satisfied: traitlets>=5.1 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from nbformat) (5.9.0)
+Requirement already satisfied: zipp>=0.5 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from importlib-metadata>=3.6->nbformat) (3.15.0)
+Requirement already satisfied: typing-extensions>=3.6.4 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from importlib-metadata>=3.6->nbformat) (4.5.0)
+Requirement already satisfied: attrs>=17.4.0 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from jsonschema>=2.6->nbformat) (23.1.0)
+Requirement already satisfied: importlib-resources>=1.4.0 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from jsonschema>=2.6->nbformat) (5.12.0)
+Requirement already satisfied: pkgutil-resolve-name>=1.3.10 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from jsonschema>=2.6->nbformat) (1.3.10)
+Requirement already satisfied: pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0 in /home/jupyterlab/conda/envs/python/lib/python3.7/site-packages (from jsonschema>=2.6->nbformat) (0.19.3)
+import yfinance as yf
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+tesla = yf.Ticker("TSLA")
+tesla_data = tesla.history(period="max")
+tesla_data.reset_index(inplace=True)
+tesla_data.head()
+Date	Open	High	Low	Close	Volume	Dividends	Stock Splits
+0	2010-06-29	1.266667	1.666667	1.169333	1.592667	281494500	0	0.0
+1	2010-06-30	1.719333	2.028000	1.553333	1.588667	257806500	0	0.0
+2	2010-07-01	1.666667	1.728000	1.351333	1.464000	123282000	0	0.0
+3	2010-07-02	1.533333	1.540000	1.247333	1.280000	77097000	0	0.0
+4	2010-07-06	1.333333	1.333333	1.055333	1.074000	103003500	0	0.0
+url = "https://www.macrotrends.net/stocks/charts/TSLA/tesla/revenue"
+html_data  = requests.get(url).text
+soup = BeautifulSoup(html_data,"html5lib")
+soup.find_all("tbody")[1]
+<tbody>
+				
+												
+				<tr>
+					<td style="text-align:center">2020-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,021</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2020-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,194</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2019-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,439</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2019-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,286</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2019-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,548</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2019-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,063</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2018-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,935</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2018-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,501</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2018-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,786</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2018-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,825</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2017-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,989</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2017-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,688</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2017-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,046</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2017-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,403</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2016-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,959</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2016-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,632</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2016-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,972</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2016-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,525</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2015-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,016</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2015-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,762</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2015-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,061</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2015-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,476</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2014-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,092</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2014-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,731</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2014-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,996</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2014-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,684</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2013-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,107</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2013-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,384</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2013-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,865</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2013-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,562</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2012-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,773</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2012-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,550</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2012-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,002</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2012-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,579</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2011-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,947</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2011-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,744</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2011-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,281</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2011-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,693</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2010-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,899</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2010-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,799</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2010-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,083</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2010-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,524</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2009-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,835</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2009-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,739</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2009-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,981</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2009-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,492</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2008-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,696</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2008-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,804</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2008-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,814</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2008-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,866</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2007-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,611</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2007-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,338</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2007-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,279</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2007-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,304</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2006-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,012</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2006-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$963</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2006-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,040</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2006-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,667</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2005-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$534</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2005-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$416</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2005-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$475</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2005-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$709</td>
+						
+									
+								
+				  </tr>
+				  
+				  
+				</tbody>
+tesla_revenue = pd.DataFrame(columns=['Date', 'Revenue'])
+​
+for table in soup.find_all('table'):
+​
+    if ('Tesla Quarterly Revenue' in table.find('th').text):
+        rows = table.find_all('tr')
+        
+        for row in rows:
+            col = row.find_all('td')
+            
+            if col != []:
+                date = col[0].text
+                revenue = col[1].text.replace(',','').replace('$','')
+​
+                tesla_revenue = tesla_revenue.append({"Date":date, "Revenue":revenue}, ignore_index=True)
+tesla_revenue.tail()
+Date	Revenue
+GameStop = yf.Ticker("GME")
+gme_data = GameStop.history(period="max")
+gme_data.reset_index(inplace=True)
+gme_data.head()
+Date	Open	High	Low	Close	Volume	Dividends	Stock Splits
+0	2002-02-13	1.620129	1.693350	1.603296	1.691667	76216000	0.0	0.0
+1	2002-02-14	1.712707	1.716074	1.670626	1.683250	11021600	0.0	0.0
+2	2002-02-15	1.683251	1.687459	1.658002	1.674834	8389600	0.0	0.0
+3	2002-02-19	1.666417	1.666417	1.578047	1.607504	7410400	0.0	0.0
+4	2002-02-20	1.615921	1.662210	1.603296	1.662210	6892800	0.0	0.0
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0220EN-SkillsNetwork/labs/project/stock.html"
+​
+html_data  = requests.get(url).text
+soup = BeautifulSoup(html_data,"html5lib")
+soup.find_all("tbody")[1]
+<tbody>
+				
+												
+				<tr>
+					<td style="text-align:center">2020-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,021</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2020-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,194</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2019-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,439</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2019-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,286</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2019-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,548</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2019-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,063</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2018-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,935</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2018-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,501</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2018-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,786</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2018-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,825</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2017-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,989</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2017-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,688</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2017-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,046</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2017-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,403</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2016-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,959</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2016-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,632</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2016-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,972</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2016-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,525</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2015-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,016</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2015-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,762</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2015-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,061</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2015-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,476</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2014-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,092</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2014-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,731</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2014-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,996</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2014-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,684</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2013-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,107</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2013-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,384</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2013-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,865</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2013-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,562</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2012-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,773</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2012-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,550</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2012-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,002</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2012-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,579</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2011-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,947</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2011-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,744</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2011-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,281</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2011-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,693</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2010-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,899</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2010-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,799</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2010-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,083</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2010-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,524</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2009-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,835</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2009-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,739</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2009-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,981</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2009-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$3,492</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2008-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,696</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2008-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,804</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2008-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,814</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2008-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,866</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2007-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,611</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2007-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,338</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2007-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,279</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2007-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$2,304</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2006-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,012</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2006-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$963</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2006-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,040</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2006-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$1,667</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2005-10-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$534</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2005-07-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$416</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2005-04-30</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$475</td>
+						
+									
+								
+				  </tr>
+				  
+												
+				<tr>
+					<td style="text-align:center">2005-01-31</td>
+				
+				
+				
+										
+										
+						<td style="text-align:center">$709</td>
+						
+									
+								
+				  </tr>
+				  
+				  
+				</tbody>
+gme_revenue = pd.DataFrame(columns=['Date', 'Revenue'])
+​
+for table in soup.find_all('table'):
+​
+    if ('GameStop Quarterly Revenue' in table.find('th').text):
+        rows = table.find_all('tr')
+        
+        for row in rows:
+            col = row.find_all('td')
+            
+            if col != []:
+                date = col[0].text
+                revenue = col[1].text.replace(',','').replace('$','')
+​
+                gme_revenue = gme_revenue.append({"Date":date, "Revenue":revenue}, ignore_index=True)
+gme_revenue.tail()
+Date	Revenue
+57	2006-01-31	1667
+58	2005-10-31	534
+59	2005-07-31	416
+60	2005-04-30	475
+61	2005-01-31	709
+def make_graph(stock_data, revenue_data, stock):
+    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, subplot_titles=("Historical Share Price", "Historical Revenue"), vertical_spacing = .3)
+    stock_data_specific = stock_data[stock_data.Date <= '2021--06-14']
+    revenue_data_specific = revenue_data[revenue_data.Date <= '2021-04-30']
+    fig.add_trace(go.Scatter(x=pd.to_datetime(stock_data_specific.Date, infer_datetime_format=True), y=stock_data_specific.Close.astype("float"), name="Share Price"), row=1, col=1)
+    fig.add_trace(go.Scatter(x=pd.to_datetime(revenue_data_specific.Date, infer_datetime_format=True), y=revenue_data_specific.Revenue.astype("float"), name="Revenue"), row=2, col=1)
+    fig.update_xaxes(title_text="Date", row=1, col=1)
+    fig.update_xaxes(title_text="Date", row=2, col=1)
+    fig.update_yaxes(title_text="Price ($US)", row=1, col=1)
+    fig.update_yaxes(title_text="Revenue ($US Millions)", row=2, col=1)
+    fig.update_layout(showlegend=False,
+    height=900,
+    title=stock,
+    xaxis_rangeslider_visible=True)
+    fig.show()
+make_graph(tesla_data, tesla_revenue, 'Tesla')
+make_graph(gme_data, gme_revenue, 'GameStop')
+make_graph(gme_data, gme_revenue, 'GameStop')
+​
+
+
